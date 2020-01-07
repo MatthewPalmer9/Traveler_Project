@@ -16,7 +16,30 @@ class ApplicationController < Sinatra::Base
      erb :'/registrations/signup'
    end
 
+   get'/login' do
+     erb:'/registrations/login'
+   end
+
+   get '/sessions/failure' do
+     erb :'/sessions/failure'
+   end
+
+   get '/sessions/logout' do
+    session.clear
+    erb :index
+   end
+
+   post '/login' do
+    @user = User.find_by(email: params[:email])
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect '/users/home'
+    end
+    redirect '/sessions/failure'
+   end
+
    get '/users/home' do
+     @user = current_user
      erb :'/users/home'
    end
 
@@ -24,17 +47,29 @@ class ApplicationController < Sinatra::Base
      erb :'/registrations/failure'
    end
 
-   post 'signup' do
+   post '/signup' do
      if params[:username].empty? || params[:email].empty? || params[:password].empty?
-       redirect '/registrations/failure'
-     elsif params[:username].exists? || params[:email].exists?
        redirect '/registrations/failure'
      end
 
-     @user = User.new(username: params[:username], email: params[:email], password: params[password])
+     @this_user = User.find_by(username: params[:username], email: params[:email])
+     if @this_user
+       redirect '/registrations/failure'
+     end
+     @user = User.new(username: params[:username], email: params[:email], password: params[:password])
      @user.save
      session[:user_id] = @user.id
-
      redirect '/users/home'
    end
+
+   #HELPERS
+   helpers do
+		def logged_in?
+			!!session[:user_id]
+		end
+
+		def current_user
+			User.find(session[:user_id])
+		end
+	end
 end

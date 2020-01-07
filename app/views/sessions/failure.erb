@@ -44,7 +44,7 @@
     </style>
 
 
-      <title>Vacation Quest - Home</title>
+      <title>Vacation Quest - Failure</title>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="#">Vacation Quest</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,15 +72,14 @@
   </head>
   <body>
     <div class="container">
-      <div class="jumbotron">
-        <h1 class="header"> Sign Up Form: </h1>
-        <form class="signup-form" action="/signup" method="post">
-          <p><span id="input-text">Username:<span> &emsp; <input type="text" name="username" value=""></p>
-          <p><span id="input-text">Email:<span> &nbsp;&emsp;&emsp;&emsp;<input type="text" name="email" value=""></p>
-          <p><span id="input-text">Password:<span> &nbsp;&emsp;<input type="text" name="password" value=""></p>
-          <p><input class="btn btn-primary btn-lg" type="submit" name="submit" value="Complete Sign Up!"></p>
-        </form>
-      </div>
+      <h1 class="header">
+        <div class="jumbotron">
+        Sorry, there seems to have been an error...
+        The Email or Password were either incorrect or do not exist. <br><br>
+        Please return to the <a href="/login"><button class="btn btn-lg btn-danger" type="button" name="button"><strong>Log In</strong></button></a> page and try again.
+        If you are not a member of Vacation Quest, you can visit the <a href="/signup"><button class="btn btn-lg btn-primary" type="button" name="button"><strong>Sign Up</strong></button></a> page and create an account for free!
+        </div>
+      </h1>
     </div>
 
     <!-- Optional JavaScript -->
