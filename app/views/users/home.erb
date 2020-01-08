@@ -69,18 +69,20 @@
   <body>
     <div class="container">
       <h1 class="header">Welcome, <%=@user.username%>!</h1>
-      <strong><h3>Upcoming Vacation Plans:</h3></strong>
-
-      <
       <div class="container">
-
+        <strong><h2>Upcoming Vacation Plans:</h2></strong>
         <% counter = 1 %>
-        <% @plan = Destination.find_by(params[:user_id]) do |plan| %>
-          <div class="jumbotron">
-            <h1><%counter%>. <%= @plan.location %></h1>
-            <h3><%= @plan.schedule %></h3>
-          </div>
+        <% Destination.all.each() do |plan| %>
+          <% if plan.user_id = @user.id %>
+            <div class="jumbotron">
+              <h1><%= counter %>. <%= plan.location %></h1>
+              <h3>Date of Vacation: <%= plan.schedule %></h3>
+            </div>
+          <% end %>
+          <% counter += 1 %>
         <% end %>
+
+        <h4>Want to Add A Vacation? Click: <a href="/users/plans/new"><button class="btn btn-primary" type="button" name="button"><strong>Add a Vacation Plan<strong></button></a></h4>
 
       </div>
 
