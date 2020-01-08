@@ -13,7 +13,8 @@
 ActiveRecord::Schema.define(version: 2020_01_07_190555) do
 
   create_table "destinations", force: :cascade do |t|
-    t.string "name"
+    t.string "location"
+    t.string "schedule"
     t.integer "user_id"
   end
 

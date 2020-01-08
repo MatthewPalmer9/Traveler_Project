@@ -16,6 +16,11 @@
         text-align: center;
       }
 
+      #username {
+        color: white;
+        font-size: 1.5rem;
+      }
+
       .header {
         text-align: center;
         font-size: 3rem;
@@ -36,37 +41,43 @@
 
       <title>Vacation Quest - Home</title>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Vacation Quest</a>
+      <a class="navbar-brand" href="/users/home">Vacation Quest</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/home">Home</a>
         </li>
 
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="/" tabindex="-1" aria-disabled="true">Plans</a>
+        <li class="nav-item active">
+          <a class="nav-link" href="/users/plans" tabindex="-1" aria-disabled="true">Plans</a>
         </li>
       </ul>
       <form id="btn_space" class="form-inline my-2 my-lg-0">
-        <a href="/login"><button class="btn btn-outline-info my-2 my-sm-0" type="button">Log In</button></a>
+        <span id="username"><%=@user.username%></span>
         <span id="spacer"></span>
-        <a href="/signup"><button class="btn btn-outline-success my-2 my-sm-0" type="button">Sign Up</button></a>
+        <span id="spacer"></span>
+        <a href="/sessions/logout"><button class="btn btn-danger my-2 my-sm-0" type="button">Log Out</button></a>
       </form>
     </div>
   </nav>
   </head>
   <body>
     <div class="container">
-      <h1 class="header">Welcome to Vacation Quest!</h1>
-      <strong><h3 class="subheader"> Where keeping track of your travel plans is made digital and easy to maintain from any device. Creating an account is easy. All it takes is a few seconds and you're ready to start building your vacation list!</strong></h3>
-      <br>
-      <h3 class="subheader">Are you ready??</h3>
-      <div class"container"><p id="signup"><a href="/signup"><button class="btn btn-lg btn-success my-2 my-sm-0" type="button">Sign Up</button></a></p></div>
+      <h1 class="header">Welcome to Your Plans Page, <%=@user.username%>!</h1>
+      <strong>
+        <h3>
+          You haven't planned any trips yet!<br>
+        </h3>
+      </strong>
+
+      <!-- PLACEHOLDER FOR CODE LATER -->
+
+
     </div>
 
     <!-- Optional JavaScript -->

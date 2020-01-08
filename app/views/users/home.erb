@@ -41,7 +41,7 @@
 
       <title>Vacation Quest - Home</title>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Vacation Quest</a>
+      <a class="navbar-brand" href="/users/home">Vacation Quest</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -49,12 +49,12 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/users/home">Home <span class="sr-only">(current)</span></a>
         </li>
 
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/users/account" tabindex="-1" aria-disabled="true">Account</a>
+          <a class="nav-link" href="/users/plans" tabindex="-1" aria-disabled="true">Plans</a>
         </li>
       </ul>
       <form id="btn_space" class="form-inline my-2 my-lg-0">
@@ -69,9 +69,20 @@
   <body>
     <div class="container">
       <h1 class="header">Welcome, <%=@user.username%>!</h1>
-      <strong><h3>Current Travel Plans:</h3></strong> 
+      <strong><h3>Upcoming Vacation Plans:</h3></strong>
 
-      <!-- PLACEHOLDER FOR CODE LATER -->
+      <
+      <div class="container">
+
+        <% counter = 1 %>
+        <% @plan = Destination.find_by(params[:user_id]) do |plan| %>
+          <div class="jumbotron">
+            <h1><%counter%>. <%= @plan.location %></h1>
+            <h3><%= @plan.schedule %></h3>
+          </div>
+        <% end %>
+
+      </div>
 
 
     </div>

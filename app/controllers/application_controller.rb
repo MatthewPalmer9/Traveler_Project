@@ -17,7 +17,7 @@ class ApplicationController < Sinatra::Base
    end
 
    get'/login' do
-     erb:'/registrations/login'
+     erb :'/registrations/login'
    end
 
    get '/sessions/failure' do
@@ -41,6 +41,24 @@ class ApplicationController < Sinatra::Base
    get '/users/home' do
      @user = current_user
      erb :'/users/home'
+   end
+
+   get '/users/plans' do
+     @user = current_user
+     erb :'/users/plans'
+   end
+
+   get '/users/plans/new' do
+     @user = current_user
+     erb :'/users/new'
+   end
+
+   post '/users/plans/new' do
+     @user = current_user
+     @destination = Destination.new(location: params[:location], schedule: params[:schedule])
+     @destination.user_id = @user.id 
+     @destination.save
+     redirect '/users/home'
    end
 
    get '/registrations/failure' do
