@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 2020_01_07_190555) do
     t.string "username"
     t.string "email"
     t.string "password_digest"
-    t.integer "destination_id"
   end
 
 end

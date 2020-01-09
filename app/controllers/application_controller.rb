@@ -39,8 +39,8 @@ class ApplicationController < Sinatra::Base
    end
 
    get '/users/home' do
-     @destination = Destination.all
      @user = current_user
+     @destination = @user.destinations
      erb :'/users/home'
    end
 
@@ -56,6 +56,9 @@ class ApplicationController < Sinatra::Base
 
    post '/users/plans/new' do
      @user = current_user
+     if params[:location].include?(" ")
+       params[:location] = params[:location].split.join("%20")
+     end
      @destination = Destination.new(location: params[:location], schedule: params[:schedule])
      @destination.user_id = @user.id
      @destination.save

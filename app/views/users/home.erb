@@ -101,20 +101,20 @@
         <strong><h2>Upcoming Vacation Plans:</h2></strong><br>
         <h5>Want to Add A Vacation? Click: <a href="/users/plans/new"><button class="btn btn-info" type="button" name="button"><strong>Add a Vacation Plan<strong></button></a></h5>
 
+      <% if @destination.length > 0 %>
         <% counter = 1 %>
-        <% Destination.order('schedule ASC').all.each() do |plan| %>
-          <% if plan.user_id = @user.id %>
+          <% @destination.order('schedule ASC').each do |plan| %>
+
             <div class="jumbotron">
               <% link = "http://pexels.com/search/" %>
               <% location = plan.location %>
               <% img_path = Scraper.get_image(link+location) %>
-              <h1 class="text-left jumbo-txt"><%= counter %>. <%= plan.location %></h1>
+              <h1 class="text-left jumbo-txt"><%= counter %>. <%= plan.location.split("%20").join(" ") %></h1>
               <h3 class="text-left jumbo-txt">Year of Vacation: <%= plan.schedule %></h3><br>
               <img class="img-fluid rounded-circle" src="<%= img_path %>" alt="">
-
             </div>
+            <% counter += 1 %>
           <% end %>
-          <% counter += 1 %>
         <% end %>
       </div>
 

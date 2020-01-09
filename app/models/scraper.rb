@@ -1,5 +1,4 @@
 
-
 class Scraper
 
   attr_accessor :image, :link
