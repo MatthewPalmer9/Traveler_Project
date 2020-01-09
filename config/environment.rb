@@ -1,4 +1,8 @@
 require 'bundler'
+require 'nokogiri'
+require 'open-uri'
+require_relative '../app/models/scraper'
+
 Bundler.require
 
 ActiveRecord::Base.establish_connection(

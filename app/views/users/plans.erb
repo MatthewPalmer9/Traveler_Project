@@ -17,14 +17,25 @@
       }
 
       #username {
-        color: white;
+        color: black;
         font-size: 1.5rem;
       }
 
       .header {
         text-align: center;
+        color: white;
+        text-shadow: 1px 1px 1px black;
         font-size: 3rem;
-        padding-top: 20px;
+        padding-top: 10%;
+      }
+
+      hr {
+        border-bottom: 1px solid black;
+      }
+
+      nav.navbar{
+        background-color: rgba(255,255,255,0.8)!important;
+        border-bottom: 1px solid black;
       }
 
       .subheader {
@@ -33,18 +44,23 @@
         padding-top: 20px;
       }
 
-      input {
-        display: inline-block;
+      .jumbotron {
+        background-color: rgba(0,0,0,0.5);
+      }
+
+      .jumbo-txt {
+        color: white;
+        text-shadow: 1px 1px black;
       }
 
       body {
-        background-color: #F0FFFF;
+        background-color: #ADD8E6;
       }
     </style>
 
 
       <title>VQ Plans - <%= @user.username %></title>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <a class="navbar-brand" href="/users/home">Vacation Quest</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -52,13 +68,13 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="/users/home">Home <span class="sr-only">(current)</span></a>
         </li>
 
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="/users/plans" tabindex="-1" aria-disabled="true">Plans</a>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/plans">Plans <span class="sr-only">(current)</span></a>
         </li>
       </ul>
       <form id="btn_space" class="form-inline my-2 my-lg-0">
@@ -71,21 +87,27 @@
   </nav>
   </head>
   <body>
+
     <div class="container">
       <h1 class="header">Welcome, <%=@user.username%>!</h1>
+      <hr>
       <div class="container">
-        <strong><h2>Your Plans:</h2></strong><br>
+        <strong><h2>Your Vacation Plans:</h2></strong><br>
         <h5>Want to Add A Vacation? Click: <a href="/users/plans/new"><button class="btn btn-primary" type="button" name="button"><strong>Add a Vacation Plan<strong></button></a></h5>
 
         <% counter = 1 %>
         <% Destination.order('schedule ASC').all.each() do |plan| %>
           <% if plan.user_id = @user.id %>
             <div class="jumbotron">
-              <h1><%= counter %>. <%= plan.location %></h1>
-              <h3>Year of Vacation: <%= plan.schedule %></h3><br>
+              <% link = "http://pexels.com/search/" %>
+              <% location = plan.location %>
+              <% img_path = Scraper.get_image(link+location) %>
+              <h1 class="text-left jumbo-txt"><%= counter %>. <%= plan.location %></h1>
+              <h3 class="text-left jumbo-txt">Year of Vacation: <%= plan.schedule %></h3><br>
+              <img class="img-fluid rounded-circle" src="<%= img_path %>" alt=""><br><br>
 
-              <a href="/users/plans/<%= plan.id %>/edit"><button class="btn btn-success" type="button" name="button" value="Edit">Edit</button></a>
-              <form class="btn-group" action="/users/plans/<%= plan.id %>" method="post">
+              <a href="/users/plans/<%= plan.id %>/edit"><button class="text-left btn btn-success" type="button" name="button" value="Edit">Edit</button></a>
+              <form class="text-left btn-group" action="/users/plans/<%= plan.id %>" method="post">
                 <input id="hidden" type="hidden" name="_method" value="delete"><br>
                 <input class="btn btn-danger" type="submit" value="Delete">
               </form>
