@@ -17,14 +17,25 @@
       }
 
       #username {
-        color: white;
+        color: black;
         font-size: 1.5rem;
       }
 
       .header {
         text-align: center;
+        color: white;
+        text-shadow: 1px 1px 1px black;
         font-size: 3rem;
-        padding-top: 20px;
+        padding-top: 10%;
+      }
+
+      hr {
+        border-bottom: 1px solid black;
+      }
+
+      nav.navbar{
+        background-color: rgba(255,255,255,0.8)!important;
+        border-bottom: 1px solid black;
       }
 
       .subheader {
@@ -33,14 +44,30 @@
         padding-top: 20px;
       }
 
+      .jumbotron {
+        background-color: rgba(0,0,0,0.5);
+      }
+
+      .jumbo-txt {
+        color: white;
+        text-shadow: 1px 1px black;
+      }
+
+      hr {
+        border-top: 1px solid white;
+        border-bottom: 2px solid black;
+        border-radius: 40px;
+        width: 80%;
+      }
+
       body {
-        background-color: #F0FFFF;
+        background-color: #ADD8E6;
       }
     </style>
 
 
-      <title>VQ Edit - <%= @user.username %> - <%= @destination.location %> </title>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <title>VQ Home - <%= @user.username %></title>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <a class="navbar-brand" href="/users/home">Vacation Quest</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -52,26 +79,37 @@
           <a class="nav-link" href="/users/home">Home <span class="sr-only">(current)</span></a>
         </li>
 
-        </li>
         <li class="nav-item">
-          <a class="nav-link" href="/users/plans" tabindex="-1" aria-disabled="true">Plans</a>
+          <a class="nav-link" href="/users/plans">Plans <span class="sr-only">(current)</span></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/users/plans/new">Add a New Vacation <span class="sr-only">(current)</span></a>
         </li>
       </ul>
-
+      <form id="btn_space" class="form-inline my-2 my-lg-0">
+        <span id="username"><%=@user.username%></span>
+        <span id="spacer"></span>
+        <span id="spacer"></span>
+        <a href="/sessions/logout"><button class="btn btn-outline-danger my-2 my-sm-0" type="button">Log Out</button></a>
+      </form>
     </div>
   </nav>
   </head>
   <body>
+    <br><br><br>
+
     <div class="container">
-      <div class="jumbotron">
+      <div class="text-center jumbotron">
 
         <form action="/users/plans/<%= @destination.id %>" method="post">
           <input id="hidden" type="hidden" name="_method" value="patch">
-          <h4>Location of Planned Vacation: <strong><%= @destination.location %><strong></h4><br>
-          <h5><p>Edit Location: <input id="location" type="text" name="location" value="<%= @destination.location %>"></p></h5>
-          <h5><p>Edit Year: &emsp;&nbsp;&nbsp;&nbsp;<input id="schedule" type="text" name="schedule"></p></h5>
-          <br><br>
-          <input id="submit" type="submit" name="submit" value="Save Changes">
+          <h1 class="header">Location of Planned Vacation: <strong><%= @destination.location %><strong></h1>
+          <hr>
+          <h5><span id="input-text">Edit Location: <input id="location" type="text" name="location" value="<%= @destination.location %>"></span></h5>
+          <h5><span id="input-text">Edit Year: &emsp;&nbsp;&nbsp;&nbsp;<input id="schedule" type="text" name="schedule"></span></h5>
+          <br>
+          <input class="btn btn-info" id="submit" type="submit" name="submit" value="Save Changes">
         </form>
 
       </div>
