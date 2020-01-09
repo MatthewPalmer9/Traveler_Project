@@ -1,34 +1,23 @@
 # TravelerProject
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/Traveler_Project`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This is a project made to keep track of scheduled vacation plans. Each user has their own vacation plan(s)
+and can manipulate those plans as needed. User authentication and CRUD elements apply to this project.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+To Clone & Use This Project:
 
-```ruby
-gem 'Traveler_Project'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install Traveler_Project
+    $ git clone git@github.com:MatthewPalmer9/Travler_Project
 
 ## Usage
 
-TODO: Write usage instructions here
+Upon Cloning the Repo, Execute:
 
-## Development
+    $ bundle install
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+In Order to Run The Project, Type:
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+    $ shotgun
 
 ## Contributing
 
