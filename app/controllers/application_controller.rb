@@ -62,6 +62,28 @@ class ApplicationController < Sinatra::Base
      redirect '/users/home'
    end
 
+   get '/users/plans/:id/edit' do
+     @user = current_user
+     @destination = Destination.find(params[:id])
+     erb :'/users/edit'
+   end
+
+   patch '/users/plans/:id' do
+     @user = current_user
+     @destination = Destination.find(params[:id])
+     @destination.location = params[:location]
+     @destination.schedule = params[:schedule]
+     @destination.save
+     redirect "/users/home"
+   end
+
+   delete '/users/plans/:id' do
+     @user = current_user
+     @destination = Destination.find(params[:id])
+     @destination.delete
+     redirect "users/home"
+   end
+
    get '/registrations/failure' do
      erb :'/registrations/failure'
    end

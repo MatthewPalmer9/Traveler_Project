@@ -39,7 +39,7 @@
     </style>
 
 
-      <title>VQ Home - <%= @user.username %></title>
+      <title>VQ Edit - <%= @user.username %> - <%= @destination.location %> </title>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="/users/home">Vacation Quest</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,36 +57,24 @@
           <a class="nav-link" href="/users/plans" tabindex="-1" aria-disabled="true">Plans</a>
         </li>
       </ul>
-      <form id="btn_space" class="form-inline my-2 my-lg-0">
-        <span id="username"><%=@user.username%></span>
-        <span id="spacer"></span>
-        <span id="spacer"></span>
-        <a href="/sessions/logout"><button class="btn btn-danger my-2 my-sm-0" type="button">Log Out</button></a>
-      </form>
+
     </div>
   </nav>
   </head>
   <body>
     <div class="container">
-      <h1 class="header">Welcome, <%=@user.username%>!</h1>
-      <div class="container">
-        <strong><h2>Upcoming Vacation Plans:</h2></strong><br>
-        <h5>Want to Add A Vacation? Click: <a href="/users/plans/new"><button class="btn btn-primary" type="button" name="button"><strong>Add a Vacation Plan<strong></button></a></h5>
+      <div class="jumbotron">
 
-        <% counter = 1 %>
-        <% Destination.order('schedule ASC').all.each() do |plan| %>
-          <% if plan.user_id = @user.id %>
-            <div class="jumbotron">
-              <h1><%= counter %>. <%= plan.location %></h1>
-              <h3>Year of Vacation: <%= plan.schedule %></h3><br>
+        <form action="/users/plans/<%= @destination.id %>" method="post">
+          <input id="hidden" type="hidden" name="_method" value="patch">
+          <h4>Location of Planned Vacation: <strong><%= @destination.location %><strong></h4><br>
+          <h5><p>Edit Location: <input id="location" type="text" name="location" value="<%= @destination.location %>"></p></h5>
+          <h5><p>Edit Year: &emsp;&nbsp;&nbsp;&nbsp;<input id="schedule" type="text" name="schedule"></p></h5>
+          <br><br>
+          <input id="submit" type="submit" name="submit" value="Save Changes">
+        </form>
 
-            </div>
-          <% end %>
-          <% counter += 1 %>
-        <% end %>
       </div>
-
-
     </div>
 
     <!-- Optional JavaScript -->

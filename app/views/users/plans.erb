@@ -33,13 +33,17 @@
         padding-top: 20px;
       }
 
+      input {
+        display: inline-block;
+      }
+
       body {
         background-color: #F0FFFF;
       }
     </style>
 
 
-      <title>Vacation Quest - Home</title>
+      <title>VQ Plans - <%= @user.username %></title>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="/users/home">Vacation Quest</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +53,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/users/home">Home</a>
+          <a class="nav-link" href="/users/home">Home <span class="sr-only">(current)</span></a>
         </li>
 
         </li>
@@ -68,14 +72,29 @@
   </head>
   <body>
     <div class="container">
-      <h1 class="header">Welcome to Your Plans Page, <%=@user.username%>!</h1>
-      <strong>
-        <h3>
-          You haven't planned any trips yet!<br>
-        </h3>
-      </strong>
+      <h1 class="header">Welcome, <%=@user.username%>!</h1>
+      <div class="container">
+        <strong><h2>Your Plans:</h2></strong><br>
+        <h5>Want to Add A Vacation? Click: <a href="/users/plans/new"><button class="btn btn-primary" type="button" name="button"><strong>Add a Vacation Plan<strong></button></a></h5>
 
-      <!-- PLACEHOLDER FOR CODE LATER -->
+        <% counter = 1 %>
+        <% Destination.order('schedule ASC').all.each() do |plan| %>
+          <% if plan.user_id = @user.id %>
+            <div class="jumbotron">
+              <h1><%= counter %>. <%= plan.location %></h1>
+              <h3>Year of Vacation: <%= plan.schedule %></h3><br>
+
+              <a href="/users/plans/<%= plan.id %>/edit"><button class="btn btn-success" type="button" name="button" value="Edit">Edit</button></a>
+              <form class="btn-group" action="/users/plans/<%= plan.id %>" method="post">
+                <input id="hidden" type="hidden" name="_method" value="delete"><br>
+                <input class="btn btn-danger" type="submit" value="Delete">
+              </form>
+
+            </div>
+          <% end %>
+          <% counter += 1 %>
+        <% end %>
+      </div>
 
 
     </div>
