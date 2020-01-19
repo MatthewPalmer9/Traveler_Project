@@ -98,11 +98,12 @@
         <strong><h2>Your Vacation Plans:</h2></strong><br>
         <h5>Want to Add A Vacation? Click: <a href="/users/plans/new"><button class="btn btn-info" type="button" name="button"><strong>Add a Vacation Plan<strong></button></a></h5>
 
+      <% if @destination.length > 0 %>
         <% counter = 1 %>
-        <% Destination.order('schedule ASC').all.each() do |plan| %>
-          <% if plan.user_id = @user.id %>
+          <% @destination.order('schedule ASC').all.each() do |plan| %>
+
             <div class="jumbotron">
-              <% link = "http://pexels.com/search/" %>
+              <% link = "https://unsplash.com/s/photos/" %>
               <% location = plan.location %>
               <% img_path = Scraper.get_image(link+location) %>
               <h1 class="text-left jumbo-txt"><%= counter %>. <%= plan.location.split("%20").join(" ") %></h1>
@@ -116,8 +117,8 @@
               </form>
 
             </div>
+            <% counter += 1 %>
           <% end %>
-          <% counter += 1 %>
         <% end %>
       </div>
 

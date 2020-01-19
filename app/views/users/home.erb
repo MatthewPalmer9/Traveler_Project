@@ -106,7 +106,7 @@
           <% @destination.order('schedule ASC').each do |plan| %>
 
             <div class="jumbotron">
-              <% link = "http://pexels.com/search/" %>
+              <% link = "https://unsplash.com/s/photos/" %>
               <% location = plan.location %>
               <% img_path = Scraper.get_image(link+location) %>
               <h1 class="text-left jumbo-txt"><%= counter %>. <%= plan.location.split("%20").join(" ") %></h1>

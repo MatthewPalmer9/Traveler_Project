@@ -46,6 +46,7 @@ class ApplicationController < Sinatra::Base
 
    get '/users/plans' do
      @user = current_user
+     @destination = @user.destinations
      erb :'/users/plans'
    end
 
