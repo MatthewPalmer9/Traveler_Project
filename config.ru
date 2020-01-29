@@ -10,4 +10,7 @@ use Rack::MethodOverride
 # DELETE in the same way.
 
 #controller(s)
+use RegistrationController
+use SessionController
+use UserController
 run ApplicationController
