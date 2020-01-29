@@ -6,6 +6,13 @@ class UserController < ApplicationController
     erb :'/users/home'
   end
 
+  get 'users/plan/:id' do
+    @user = current_user
+    @destination = @user.destinations
+
+    erb :'/users/details.erb'
+  end
+
   get '/users/plans' do
     @user = current_user
     @destination = @user.destinations
