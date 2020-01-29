@@ -6,11 +6,12 @@ class UserController < ApplicationController
     erb :'/users/home'
   end
 
-  get 'users/plan/:id' do
+  get '/users/plan/:id' do
     @user = current_user
     @destination = @user.destinations
+    @location = @destination.find_by(params[:id])
 
-    erb :'/users/details.erb'
+    erb :'/users/details'
   end
 
   get '/users/plans' do
